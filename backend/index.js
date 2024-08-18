@@ -2,9 +2,14 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const config = require("./config");
 const cors = require("cors");
+const path = require("path");
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+const _dirname = path.dirname("");
+const buildpath = path.join(_dirname, "../frontend/build")
+app.use(express.static(buildpath));
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
