@@ -44,7 +44,7 @@ const Contact = () => {
     } else {
       // Send email code here
       try {
-        const response = await axios.post("http://localhost:8000/contacted", formData);
+        const response = await axios.post("https://armaansingh.tech/contacted", formData);
         if (response.data?.success) {
           setSuccessMsg(
             `Thank you dear ${formData.username}, Your Messages has been sent Successfully!`
