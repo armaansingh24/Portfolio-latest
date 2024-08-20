@@ -43,18 +43,28 @@ const Contact = () => {
       setErrMsg("Message is required!");
     } else {
       // Send email code here
-      await axios.post("http://localhost:8000/contacted", formData);
-      setSuccessMsg(
-        `Thank you dear ${formData.username}, Your Messages has been sent Successfully!`
-      );
-      setErrMsg("");
-      setFormData({
-        username: "",
-        phoneNumber: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
+      try {
+        const response = await axios.post("http://localhost:8000/contacted", formData);
+        if (response.data?.success) {
+          setSuccessMsg(
+            `Thank you dear ${formData.username}, Your Messages has been sent Successfully!`
+          );
+          setErrMsg("");
+          setFormData({
+            username: "",
+            phoneNumber: "",
+            email: "",
+            subject: "",
+            message: ""
+          });
+        }
+        else {
+          setErrMsg("Couldn't send your message");
+        }
+      } catch (error) {
+        setErrMsg("Couldn't send your message");
+
+      }
     }
     setLoading(false);
   };
@@ -150,7 +160,7 @@ const Contact = () => {
                   onClick={handleSend}
                   className="w-full h-12 bg-[#141518] rounded-lg text-base text-gray-400 tracking-wider uppercase hover:text-white duration-300 hover:border-[1px] hover:border-designColor border-transparent"
                 >
-                  {loading ? "Sending..." :"Send Message"}
+                  {loading ? "Sending..." : "Send Message"}
                 </button>
               </div>
               {errMsg && (

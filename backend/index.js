@@ -20,31 +20,36 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post("/contacted", (req, res) => {
-  console.log(req.body);
-  const { username, phoneNumber, email, subject, message } = req.body;
+  try {
+    console.log(req.body);
+    const { username, phoneNumber, email, subject, message } = req.body;
 
-  const emailMessage = {
-    from: `${username} <${email}>`,
-    to: config.email1,
-    text: `
+    const emailMessage = {
+      from: `${username} <${email}>`,
+      to: config.email1,
+      text: `
     Name: ${username}
     Contact: ${phoneNumber}
     Email: ${email}
     Subject: ${subject}
     Message: ${message}
   `,
-  };
-  transporter.sendMail(emailMessage, function (error, info) {
-    if (error) {
-      console.log(error);
-      res.json({ yo: "error" });
-      res.sendStatus(500);
-    } else {
-      console.log("Message sent: " + info.response);
-      res.status(200).json({ msg: "mesage  has been sent" });
-    }
-    fs.unlinkSync(attachment.path);
-  });
+    };
+    transporter.sendMail(emailMessage, function (error, info) {
+      if (error) {
+        console.log(error);
+        res.json({ yo: "error" });
+        res.sendStatus(500);
+      } else {
+        console.log("Message sent: " + info.response);
+        res.status(200).json({ msg: "mesage  has been sent" });
+      }
+      fs.unlinkSync(attachment.path);
+    });
+    return res.status(200).json({ success: true });
+  } catch (error) {
+    return res.status(500).json({ success: false });
+  }
 });
 
 app.listen(8000, () => {
