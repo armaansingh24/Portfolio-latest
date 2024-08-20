@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Link } from "react-scroll";
 import { FiMenu } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { SiGithub } from "react-icons/si";
 // import { logo } from "../../assets/index"
 import { navLinksdata } from '../../constants';
 
@@ -45,9 +46,7 @@ const Navbar = () => {
               <div>
                 <p>Armaan Singh &lt;AS/&gt;</p>
                 <p className="text-sm text-gray-400 mt-2">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Earum soluta perspiciatis molestias enim cum repellat, magnam
-                  exercitationem distinctio aliquid nam.
+                  I specialize in MERN stack development, building efficient software solutions and thriving in collaborative, fast-paced environments.
                 </p>
               </div>
               <ul className="flex flex-col gap-4">
@@ -75,15 +74,15 @@ const Navbar = () => {
                   Find me in
                 </h2>
                 <div className="flex gap-4">
-                  <span className="bannerIcon">
-                    <FaFacebookF />
-                  </span>
-                  <span className="bannerIcon">
+                  <a href='https://github.com/armaansingh24' target='_blank' rel="noreferrer" className="bannerIcon">
+                    <SiGithub />
+                  </a>
+                  <a href='https://x.com/armaan_singh241' target='_blank' rel="noreferrer" className="bannerIcon">
                     <FaTwitter />
-                  </span>
-                  <span className="bannerIcon">
+                  </a>
+                  <a href='https://www.linkedin.com/in/sarmaan241/' target='_blank' rel="noreferrer" className="bannerIcon">
                     <FaLinkedinIn />
-                  </span>
+                  </a>
                 </div>
               </div>
               <span

@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="w-full h-auto bg-bodyColor text-lightText px-4">
       {splashScreen && <SplashScreen />}
-      {!splashScreen && <div>
+      {!splashScreen && <div className="overflow-x-hidden">
         <Navbar />
         <div className="max-w-screen-xl mx-auto">
           <Banner />
