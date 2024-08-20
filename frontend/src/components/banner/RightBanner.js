@@ -9,7 +9,7 @@ const RightBanner = () => {
       animate={{ opacity: 1,x:0, transition: { duration: 1 } }}>
       <img
         // className="w-[300px] h-[400px] lgl:w-[450px] lgl:h-[600px] z-10"
-        className="w-[400px] h-[400px] lgl:w-[500px] lgl:h-[500px] z-10"
+        className="w-[300px] h-[300px] lgl:w-[500px] lgl:h-[500px] z-10"
         src={bannerImg}
         alt="bannerImg"
       />

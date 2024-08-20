@@ -12,14 +12,15 @@ const Contact = () => {
     subject: "",
     message: ""
   });
+  const [loading, setLoading] = useState(false)
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
   // ========== Email Validation start here ==============
   const emailValidation = () => {
-    // return String(formData.email)
-    //   .toLowerCase()
-    //   .match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+    return String(formData.email)
+      .toLowerCase()
+      .match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
     return true
   };
 
@@ -27,6 +28,7 @@ const Contact = () => {
 
   const handleSend = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (formData.username === "") {
       setErrMsg("Username is required!");
     } else if (formData.phoneNumber === "") {
@@ -54,6 +56,7 @@ const Contact = () => {
         message: ""
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -147,7 +150,7 @@ const Contact = () => {
                   onClick={handleSend}
                   className="w-full h-12 bg-[#141518] rounded-lg text-base text-gray-400 tracking-wider uppercase hover:text-white duration-300 hover:border-[1px] hover:border-designColor border-transparent"
                 >
-                  Send Message
+                  {loading ? "Sending..." :"Send Message"}
                 </button>
               </div>
               {errMsg && (
